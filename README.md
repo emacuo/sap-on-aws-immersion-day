@@ -1,9 +1,7 @@
-<center>
-    # SAP on AWS Immersion Day - SAP HANA Express (HXE) Lab
-</center>
+# SAP on AWS Immersion Day - SAP HANA Express (HXE) Lab
 
 <p align="center">
-    <img src="architecture.png" width="70%">
+    <img src="logo.png" width="50%">
 </p>
 
 # System Architecture
@@ -14,9 +12,9 @@ The HANA instance is deployed in a private subnet of the default Virtual Private
 The architecture is fully deployed in eu-central-1 region (Frankfurt).
 The deployment of the full architecture has been done through a CloudFormation template. 
 
-
-![GitHub Logo](/images/logo.png)
-
+<p align="center">
+    <img src="architecture.png" width="70%">
+</p>
 
 # Lab 1 - Set up RDP Jump Box with HANA Studio
 
