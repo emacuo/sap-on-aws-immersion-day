@@ -1,6 +1,7 @@
 # SAP on AWS Immersion Day - SAP HANA Express (HXE) Lab
 
 ![Architecture Diagram](architecture.png)
+<img src="architecture.png" width="40%">
 
 # System Architecture
 
