@@ -45,7 +45,7 @@ After you log into the HANA EC2 instance, switch to the `root` user. For the roo
 1. Execute the following command: 
 
 ```
-`sudo su -`
+sudo su -
 ```
 
 Now, you are prompted as `hanaonaws01` user.
@@ -57,7 +57,7 @@ Give administrator access to `hdbadm`  user (this is to allow HANA administrator
 1. Execute this command as root user (after `sudo su -`): 
 
 ```
-`visudo`
+visudo
 ```
 
 2. Go to the end of the `sudoers` file and add the following line. 
@@ -65,7 +65,7 @@ Give administrator access to `hdbadm`  user (this is to allow HANA administrator
 If you are not familiar with `vi` and `visudo` commands: scroll down to the end of the file; hit the `o` key for opening a new line: at this point you should see the word `INSERT` at the bottom of the screen; add the text below and hit the return key; hit the `ESC` key: at this point `INSERT` should no longer appear at the bottom of the screen; type `ZZ` to save the file and close `visudo`.
 
 ```
-`hdbadm ALL=(ALL) NOPASSWD: ALL`
+hdbadm ALL=(ALL) NOPASSWD: ALL
 ```
 
 ### **Step P.4**
@@ -75,19 +75,23 @@ Keeping the root user (`sudo su -`), create a new entry in the `/etc/hosts` conf
 1. Lookup in the command line for the private IP address of the HANA EC2 instance by typing:
 
 ```
-`ifconfig`
+ifconfig
 ```
 
 2. Copy the private IP address of the instance (you can find it next to `inet` in the `eth0` section). An alternative way of knowing this IP is to look at the `Description` tab of the HANA EC2 instance: `AWS Management Console` > `EC2 Dashboard` > `Running Instances` > `Select the HANA host` through the radio button next to it > `Description` tab > `Private IP`
-3. In the command line, open the `/etc/hosts` file through the `vi` text editor:
-`vi /etc/hosts`
+3. In the command line, open the `/etc/hosts` file through the `vi` text editor: 
+
+```
+vi /etc/hosts
+
+```
 4. Scroll down the content of the file until reaching the line that contains the string: `10.x.x.239 hanaonaws01.local hanaonaws01`
 5. Press the `i` key in order to use the `INSERT` mode
 6. Comment that line by inserting a `#` character at the beginning of the line
 7. Add a new line after the previously commented line, by inserting the following string:
 
 ```
-`<private-IP> hanaonaws01.local hanaonaws01`
+<private-IP> hanaonaws01.local hanaonaws01
 ```
 
 The <private-IP> parameter is the value that you copied at point 1 and you should paste at the beginning of the new line; `hanaonaws01.local` is the host-name; `hanaonaws01` is the alias for the host.
@@ -96,7 +100,7 @@ The <private-IP> parameter is the value that you copied at point 1 and you shoul
 2. Try to ping the host-name to check everything works fine: 
 
 ```
-`ping hanaonaws01`
+ping hanaonaws01
 ```
 
 If everything works, you should receive some bytes back from the ICMPv4 protocol.
@@ -128,7 +132,6 @@ Now that you are logged into the RDP host, set up the HANA Studio to connect to 
 1. Double click on the icon of `Eclipse Java Neon`
 2. When opening the SAP HANA Studio for the first time, you could get a prompt to select a directory as a workspace. If it happens, please, accept the default location. Moreover, if prompted to create a password hint for the master password, select `No`. If it doesn’t happen, you should directly land to SAP HANA Administration Console.
 3. You should land to the SAP HANA Administration Console by default. If the Java perspective is set as as the default perspective for the IDE, click on the top-right button (with a Swiss-knife icon) `SAP HANA Administration Console` to change the current perspective (view) the HANA Administration console one
-
 
 [Image: Screenshot 2020-06-19 at 17.38.59.png]
 
