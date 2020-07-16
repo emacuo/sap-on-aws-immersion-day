@@ -1,5 +1,5 @@
-#              Lab - SAP HANA Express (HXE)
-      SAP on AWS - Virtual Immersion Day
+# Lab - SAP HANA Express (HXE)
+  SAP on AWS - Virtual Immersion Day
 
 
 [Image: AWS_AWS_logo_RGB.png]
