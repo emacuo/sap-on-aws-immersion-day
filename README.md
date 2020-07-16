@@ -180,29 +180,29 @@ Before proceeding with taking the Image from the HANA EC2 server, you need to di
 1. After repeating the steps P.1 and P.2 of the Prerequisites of Lab 1 to be logged to HANA host through AWS Systems Manager Session Manager, login to HANA at OS level using `hdbadm` user: 
 
 ```
-$ su - hdbadm
+su - hdbadm
 ```
 
-1. Run the command `cdpro` to go to the profile directory
+2. Run the command `cdpro` to go to the profile directory
 
 ```
-$ cdpro
+cdpro
 ```
 
-1. From the profile directory (`/usr/sap/SID/SYS/profile`), open the configuration file `HDB_HDB00_hanaonaws01.local`:
+3. From the profile directory (`/usr/sap/SID/SYS/profile`), open the configuration file `HDB_HDB00_hanaonaws01.local`:
 
 ```
-$ vi /usr/sap/HDB/SYS/profile/HDB_HDB00_hanaonaws01.local
+vi /usr/sap/HDB/SYS/profile/HDB_HDB00_hanaonaws01.local
 ```
 
-1. Press the `i` key to go to `INSERT` mode and change the value of `Autostart` parameter from `1` to `0`: 
+4. Press the `i` key to go to `INSERT` mode and change the value of `Autostart` parameter from `1` to `0`: 
 
 ```
 Autostart = 0
 ```
 
-1. Press `ESC` key to exit `INSERT` mode
-2. Save and close by pressing `SHIFT`+`Z`+`Z`
+5. Press `ESC` key to exit `INSERT` mode
+6. Save and close by pressing `SHIFT`+`Z`+`Z`
 
 ### Step 2.2
 
@@ -243,25 +243,25 @@ Now that you have disabled HANA `Autostart` parameter, you can create the AMI fr
     3. Open a new Linux Shell on your laptop and execute the 2 commands suggested in the Connect dialog from the directory where the .pem file is stored (as an alternative, PuTTY can be used as well): 
 
 ```
-$ chmod 400 <keyname>.pem
-$ ssh -i "<keyname>.pem" ec2-user@ec2-xx-xxx-xxx-xxx.eu-central-1.compute.amazonaws.com
+chmod 400 <keyname>.pem
+ssh -i "<keyname>.pem" ec2-user@ec2-xx-xxx-xxx-xxx.eu-central-1.compute.amazonaws.com
 ```
 
 Fill in the  `<keyname>` and the `X`s with the name of the .pem file and the public IP address of your secondary HANA instance respectively.
 
-1. Make sure that HANA system is started by verifying all the processes listed as an output of the command `sapcontrol` are listed as `green`
+15. Make sure that HANA system is started by verifying all the processes listed as an output of the command `sapcontrol` are listed as `green`
 
 ```
-$ sudo su -
-$ su - hdbadm
+sudo su -
+su - hdbadm
 Password: Aws12345
-$ sapcontrol -nr 00 -function GetProcessList
+sapcontrol -nr 00 -function GetProcessList
 ```
 
-1. If not, launch the following command: 
+16. If not, launch the following command: 
 
 ```
-$ sapcontrol -nr 00 -function Start
+sapcontrol -nr 00 -function Start
 ```
 
 All the HANA processes will be launched after that command terminates his execution. After a minute approximately, all the processes should move to `green` status. You can check it by using the `GetProcessList` command again. In that case, the secondary HANA server would be up and running.
@@ -298,7 +298,7 @@ After you log into the HANA EC2 instance, switch to the root user. For the root 
 1. Execute the following command: 
 
 ```
-$ sudo su -
+sudo su -
 ```
 
 ### **Step 3.1.3**
@@ -306,16 +306,16 @@ $ sudo su -
 Since in lab 2 you created an AMI from the primary HANA instance, at the time of creation, you needed to reboot the primary instance. Therefore, it is necessary to start again the processes of the HANA system at OS level. In order to do so, launch the following command as an `hdbadm` user: 
 
 ```
-$ su - hdbadm
+su - hdbadm
 Password: Aws123
-$ sapcontrol -nr 00 -function Start
+sapcontrol -nr 00 -function Start
 ```
 
 Wait for a minute since the processes are in GREEN status. 
 You can check it through the command: 
 
 ```
-$ sapcontrol -nr 00 -function GetProcessList
+sapcontrol -nr 00 -function GetProcessList
 ```
 
 ### **Step 3.1.4**
@@ -328,7 +328,7 @@ It is possible to create an Amazon S3 bucket both via AWS Command Line Interface
 If you want to create the bucket via AWS CLI, once logged into the HANA instance (`sudo su -`), write the following AWS CLI statement to create a new S3 bucket. Note: please, use `eu-central-1` as Region parameter, as all the infrastructure is hosted in Frankfurt region. Please, also use only lowercase (and URL compliant) characters for the S3 bucket names. 
 
 ```
-$ aws s3 mb s3://hana-backup-<name initial + surname initial>-<last 2 digits of birth year> \
+aws s3 mb s3://hana-backup-<name initial + surname initial>-<last 2 digits of birth year> \
 --region <aws region you are using>
 ```
 
@@ -353,10 +353,10 @@ In the case of Jeff Bezos, for example, the bucket names would be respectively: 
 As HANA administrator user (`su - hdbadm`), create a key called BACKUP for the `SYSTEM` user of the HANA database, using the password that has been provided in the CloudFormation template used to deploy the HANA instance (`Aws12345`). 
 
 ```
-`$ su - hdbadm
+su - hdbadm
 Password: Aws12345
-$ hdbuserstore SET BACKUP "localhost:30015" SYSTEM Aws12345
-$ hdbuserstore list`
+hdbuserstore SET BACKUP "localhost:30015" SYSTEM Aws12345
+hdbuserstore list
 ```
 
 In this case the HANA port number is `30015`, since the HANA instance number chosen by the CloudFormation template is `00`. In general, the port is `3<HANA_ID>15` for single tenant databases. The port is 3<HANA_ID>13 for multi-tenant databases.
@@ -374,13 +374,13 @@ Follow the tasks described above:
 1. Create and open a new file in the default working directory of the HANA administrator user (`/usr/sap/HDB/HDB00/`) by using `vi` text editor, and call it `hana_backup.sh`
 
 ```
-`$ vi /usr/sap/HDB/HDB00/hana_backup.sh`
+vi /usr/sap/HDB/HDB00/hana_backup.sh
 ```
 
-1. Copy and paste in the script file the following lines: 
+2. Copy and paste in the script file the following lines: 
 
 ```
-`#!/bin/sh
+#!/bin/sh
 #set -x
 S3Bucket_Name=<YOUR-S3-BUCKET>
 TIMESTAMP=$(date +\%F\_%H\%M)
@@ -397,26 +397,26 @@ echo "Continue with copying the backup files in to S3"
 echo $BACKUP_PREFIX
 sudo -u root /usr/local/bin/aws s3 sync /backup/data/${SAPSYSTEMNAME}/ s3://${S3Bucket_Name}/bkps/${SAPSYSTEMNAME}/data/ --include "${BACKUP_PREFIX}*" --exclude "*20191013_COMPLETE_DATA_BACKUP*"
 echo "Copying HANA Database log files in to S3"
-sudo -u root /usr/local/bin/aws s3 sync /backup/log/${SAPSYSTEMNAME}/ s3://${S3Bucket_Name}/bkps/${SAPSYSTEMNAME}/log/ --include "log_backup*" --exclude "*20191013_COMPLETE_DATA_BACKUP*"`
+sudo -u root /usr/local/bin/aws s3 sync /backup/log/${SAPSYSTEMNAME}/ s3://${S3Bucket_Name}/bkps/${SAPSYSTEMNAME}/log/ --include "log_backup*" --exclude "*20191013_COMPLETE_DATA_BACKUP*"
 ```
 
-1. Edit `<YOUR-S3-BUCKET>` at line 2 by inserting the name of the first S3 bucket you’ve created at **step 3.1.4** (`hana-backup-<name-initial+surname-initial>-<last-2-digits-of-birth-year`). To edit files using vi or visudo, refer to step 
+3. Edit `<YOUR-S3-BUCKET>` at line 2 by inserting the name of the first S3 bucket you’ve created at **step 3.1.4** (`hana-backup-<name-initial+surname-initial>-<last-2-digits-of-birth-year`). To edit files using vi or visudo, refer to step 
 
-1. Save and close the file by pressing `ESC` and then `SHIFT`+`Z`+`Z`
+4. Save and close the file by pressing `ESC` and then `SHIFT`+`Z`+`Z`
 
-1. Update the script permissions by writing the following line to provide read and execute access to the script for everyone: 
-
-```
-`$ chmod 755 /usr/sap/HDB/HDB00/hana_backup.sh`
-```
-
-1. Execute the script by typing: 
+5. Update the script permissions by writing the following line to provide read and execute access to the script for everyone: 
 
 ```
-`$ /usr/sap/HDB/HDB00/hana_backup.sh`
+chmod 755 /usr/sap/HDB/HDB00/hana_backup.sh
 ```
 
-1. Check the backups in the S3 bucket (`hana-backup-<name initial + surname initial>-<last 2 digits of birth year>`): you should find a folder called `bkps`, that contains another folder called `HDB` (instance name). In this last folder you can find both `data` backups folder and `logs` backups folder. In the log folder you should find both `HDB_DB` tenant logs and `SYSTEMDB` logs.
+6. Execute the script by typing: 
+
+```
+/usr/sap/HDB/HDB00/hana_backup.sh
+```
+
+7. Check the backups in the S3 bucket (`hana-backup-<name initial + surname initial>-<last 2 digits of birth year>`): you should find a folder called `bkps`, that contains another folder called `HDB` (instance name). In this last folder you can find both `data` backups folder and `logs` backups folder. In the log folder you should find both `HDB_DB` tenant logs and `SYSTEMDB` logs.
 
 
 
@@ -430,12 +430,12 @@ Install the AWS Backint Agent for SAP HANA on the HANA host by using an AWS Syst
 
 1. From the AWS Management Console, choose `Systems Manager` under Management & Governance, or enter `Systems Manager` in the `Find Services` search bar
 
-1. From the `Systems Manager` console, choose `Documents` under `Shared Resources` in the left navigation pane
+2. From the `Systems Manager` console, choose `Documents` under `Shared Resources` in the left navigation pane
 
-1. On the `Documents` page, select the `Owned by Amazon` tab. You should look for a document named `AWSSAP-InstallBackint` through the search bar.
+3. On the `Documents` page, select the `Owned by Amazon` tab. You should look for a document named `AWSSAP-InstallBackint` through the search bar.
 
-1. Select the `AWSSAP-InstallBackint` document and choose `Run` command
-2. Under the Command parameters, enter the following parameters:
+4. Select the `AWSSAP-InstallBackint` document and choose `Run` command
+5. Under the Command parameters, enter the following parameters:
     1. Choose the `Default` document version.
     2. `Bucket Name`: enter the name of the Amazon S3 bucket where you want to store your SAP HANA backup files (`hana-backup-<name initial + surname initial>-<last 2 digits of birth year>-backint`).
     3. `Bucket Folder`: optionally, enter the name of the folder within your Amazon S3 bucket where you want to store your SAP HANA backup files. Leave this blank in this case. 
@@ -446,12 +446,12 @@ Install the AWS Backint Agent for SAP HANA on the HANA host by using an AWS Syst
     8. Use `/hana/shared` as `Installation Directory`.
     9. `Modify Global ini file`: choose `modify` to modify the global.ini file.
     10. `Ensure No Backup In Process`: choose `Yes` to confirm that you have disabled existing backups and are ready to proceed with the installation. The SSM document will fail if you choose “No”.
-3. Under `Targets`, select `Choose intances manually`, and then choose the HANA instance on which to install it from the list. If you are not able to find your instance in the list, verify that you have followed all of the steps in the prerequisites.
-4. Under `Other parameters`, leave the field empty.
-5. Leave the rest of the options as default.
-6. Choose `Run`.
+6. Under `Targets`, select `Choose intances manually`, and then choose the HANA instance on which to install it from the list. If you are not able to find your instance in the list, verify that you have followed all of the steps in the prerequisites.
+7. Under `Other parameters`, leave the field empty.
+8. Leave the rest of the options as default.
+9. Choose `Run`.
 
-1. When the agent is successfully installed, you will see the `Success` status under the `Command ID`.
+10. When the agent is successfully installed, you will see the `Success` status under the `Command ID`.
 
 ### **Step 3.2.2**
 
@@ -468,38 +468,38 @@ Now that the AWS Backint Agent for SAP HANA is installed on the host, you can pr
 2. Login as HANA administrator for the `HDB` database: 
 
 ```
-`$ su - hdbadm
-Password: Aws12345`
+su - hdbadm
+Password: Aws12345
 ```
 
-1. Create an entry in the HANA `hdbuserstore` to connect to `SYSTEMDB` with the user `SYSTEM`. Use the command `hdbuserstore -i set SYSTEM <hostname>:3NN13@SYSTEMDB SYSTEM <Password>` to perform this task. Note that you can get the hostname of your HANA instance through the `hostname` command (should be `hanaonaws01`). Use the port `30013`, since the HANA instance number in this case is 00. Use `Aws12345` as a password.
+3. Create an entry in the HANA `hdbuserstore` to connect to `SYSTEMDB` with the user `SYSTEM`. Use the command `hdbuserstore -i set SYSTEM <hostname>:3NN13@SYSTEMDB SYSTEM <Password>` to perform this task. Note that you can get the hostname of your HANA instance through the `hostname` command (should be `hanaonaws01`). Use the port `30013`, since the HANA instance number in this case is 00. Use `Aws12345` as a password.
 
 ```
-`$ hostname`
-$ hdbuserstore -i set SYSTEM hanaonaws01:30013@SYSTEMDB SYSTEM Aws12345
+hostname
+hdbuserstore -i set SYSTEM hanaonaws01:30013@SYSTEMDB SYSTEM Aws12345
 ```
 
-1. Launch `hdbsql` command to execute SQL statements against the database and list the latest 10 backups of the backup catalog (some old backups could appear): 
+4. Launch `hdbsql` command to execute SQL statements against the database and list the latest 10 backups of the backup catalog (some old backups could appear): 
 
 ```
-$ hdbsql -U SYSTEM
->> select top 50 * from m_backup_catalog order by SYS_START_TIME DESC
+hdbsql -U SYSTEM
+select top 50 * from m_backup_catalog order by SYS_START_TIME DESC
 ```
 
-1. Execute a full backup of the system database by using the following SQL statement:
+5. Execute a full backup of the system database by using the following SQL statement:
 
 ```
->> BACKUP DATA USING BACKINT ('/usr/sap/HDB/SYS/global/hdb/backint/SYSTEMDB/')
+BACKUP DATA USING BACKINT ('/usr/sap/HDB/SYS/global/hdb/backint/SYSTEMDB/')
 ```
 
 The backup process can take quite a bit of time (minimum 30m) with the default settings of the AWS Backint Agent. It is possible to fine tune the agent in order to get better performances to speed-up the backup process by increasing the size of the `data_backup_buffer_size` and the number of `parallel_data_backup_backint_channels`. More information can be found in the [AWS SAP HANA Guide](https://docs.aws.amazon.com/sap/latest/sap-hana/aws-backint-agent-installing-configuring.html#aws-backint-agent-sap-hana-parameters). 
 
-1. Check the backups creation in the destination Amazon S3 bucket via AWS Management Console
-2. While performing the backup, you can move to the following task by opening a new connection with the HANA instance by AWS Systems Manager Session Manager (as done at the beginning of this step)
-3. [Optional] At finished backup, you can list again the backups through the previous SQL statement in hdbsql:
+6. Check the backups creation in the destination Amazon S3 bucket via AWS Management Console
+7. While performing the backup, you can move to the following task by opening a new connection with the HANA instance by AWS Systems Manager Session Manager (as done at the beginning of this step)
+8. [Optional] At finished backup, you can list again the backups through the previous SQL statement in hdbsql:
 
 ```
->> select top 50 * from m_backup_catalog order by SYS_START_TIME DESC
+select top 50 * from m_backup_catalog order by SYS_START_TIME DESC
 ```
 
 In this case, the new backup files will be listed as an output.
