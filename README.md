@@ -45,7 +45,7 @@ After you log into the HANA EC2 instance, switch to the `root` user. For the roo
 1. Execute the following command: 
 
 ```
-$ sudo su -
+`sudo su -`
 ```
 
 Now, you are prompted as `hanaonaws01` user.
@@ -57,10 +57,10 @@ Give administrator access to `hdbadm`  user (this is to allow HANA administrator
 1. Execute this command as root user (after `sudo su -`): 
 
 ```
-$ visudo
+`visudo`
 ```
 
-1. Go to the end of the `sudoers` file and add the following line. 
+2. Go to the end of the `sudoers` file and add the following line. 
 
 If you are not familiar with `vi` and `visudo` commands: scroll down to the end of the file; hit the `o` key for opening a new line: at this point you should see the word `INSERT` at the bottom of the screen; add the text below and hit the return key; hit the `ESC` key: at this point `INSERT` should no longer appear at the bottom of the screen; type `ZZ` to save the file and close `visudo`.
 
@@ -75,12 +75,12 @@ Keeping the root user (`sudo su -`), create a new entry in the `/etc/hosts` conf
 1. Lookup in the command line for the private IP address of the HANA EC2 instance by typing:
 
 ```
-`$ ifconfig`
+`ifconfig`
 ```
 
-1. Copy the private IP address of the instance (you can find it next to `inet` in the `eth0` section). An alternative way of knowing this IP is to look at the `Description` tab of the HANA EC2 instance: `AWS Management Console` > `EC2 Dashboard` > `Running Instances` > `Select the HANA host` through the radio button next to it > `Description` tab > `Private IP`
-2. In the command line, open the `/etc/hosts` file through the `vi` text editor:
-3. `$ vi /etc/hosts`
+2. Copy the private IP address of the instance (you can find it next to `inet` in the `eth0` section). An alternative way of knowing this IP is to look at the `Description` tab of the HANA EC2 instance: `AWS Management Console` > `EC2 Dashboard` > `Running Instances` > `Select the HANA host` through the radio button next to it > `Description` tab > `Private IP`
+3. In the command line, open the `/etc/hosts` file through the `vi` text editor:
+`vi /etc/hosts`
 4. Scroll down the content of the file until reaching the line that contains the string: `10.x.x.239 hanaonaws01.local hanaonaws01`
 5. Press the `i` key in order to use the `INSERT` mode
 6. Comment that line by inserting a `#` character at the beginning of the line
@@ -90,18 +90,18 @@ Keeping the root user (`sudo su -`), create a new entry in the `/etc/hosts` conf
 `<private-IP> hanaonaws01.local hanaonaws01`
 ```
 
-The <private-IP> parameter is the value that you copied at point 1 and you should paste at the beginning of the new line; hanaonaws01.local is the host-name; hanaonaws01 is the alias for the host.
+The <private-IP> parameter is the value that you copied at point 1 and you should paste at the beginning of the new line; `hanaonaws01.local` is the host-name; `hanaonaws01` is the alias for the host.
 
 1. Save and close the text editor 
 2. Try to ping the host-name to check everything works fine: 
 
 ```
-$ ping hanaonaws01
+`ping hanaonaws01`
 ```
 
 If everything works, you should receive some bytes back from the ICMPv4 protocol.
 
-1. Stop the process by pressing `CTRL`+`C`
+3. Stop the process by pressing `CTRL`+`C`
 
 Your HANA host has now a correct mapping between its private IP, its host name `hanaonaws01.local` and its host alias `hanaonaws01`. This operation can be also done via [YaST2 on SLES](https://www.suse.com/support/kb/doc/?id=000018501).
 
