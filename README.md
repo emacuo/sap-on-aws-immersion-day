@@ -1,4 +1,4 @@
-# SAP on AWS Immersion Day - SAP HANA Express (HXE) Lab
+<center># SAP on AWS Immersion Day - SAP HANA Express (HXE) Lab</center>
 
 <p align="center">
     <img src="architecture.png" width="70%">
