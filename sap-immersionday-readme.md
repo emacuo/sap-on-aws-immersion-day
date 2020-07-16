@@ -11,8 +11,7 @@ The architecture is fully deployed in eu-central-1 region (Frankfurt).
 The deployment of the full architecture has been done through a CloudFormation template. 
 
 
-[Image: Virtual CPP - SAP on AWS(1).png]
-
+![GitHub Logo](/images/logo.png)
 
 
 # Lab 1 - Set up RDP Jump Box with HANA Studio
