@@ -133,14 +133,17 @@ Now that you are logged into the RDP host, set up the HANA Studio to connect to 
 2. When opening the SAP HANA Studio for the first time, you could get a prompt to select a directory as a workspace. If it happens, please, accept the default location. Moreover, if prompted to create a password hint for the master password, select `No`. If it doesn’t happen, you should directly land to SAP HANA Administration Console.
 3. You should land to the SAP HANA Administration Console by default. If the Java perspective is set as as the default perspective for the IDE, click on the top-right button (with a Swiss-knife icon) `SAP HANA Administration Console` to change the current perspective (view) the HANA Administration console one
 
-[Image: Screenshot 2020-06-19 at 17.38.59.png]
+<p align="center">
+    <img src="hana-studio-1.png" width="100%">
+</p>
 
-1. Under the `Systems` tab, select the down-arrow icon and click on `Add System...`
+4. Under the `Systems` tab, select the down-arrow icon and click on `Add System...`
 
+<p align="center">
+    <img src="hana-studio-2.png" width="100%">
+</p>
 
-[Image: Screenshot 2020-06-19 at 17.37.48.png]
-
-1. Fill in the parameters as follows: 
+5. Fill in the parameters as follows: 
 
     1. Host Name: `<Private IP of HANA host>`. You can find it going to: 
         `AWS Management Console` > `EC2 Dashboard` > `Running Instances` > `Select the HANA host` > `Description` tab > `Private IP`
@@ -152,14 +155,16 @@ Now that you are logged into the RDP host, set up the HANA Studio to connect to 
     6. Folder: `/`
 
 
-1. Select `Next`
-2. Insert the following parameters: 
+6. Select `Next`
+7. Insert the following parameters: 
     1. User Name: `SYSTEM`
     2. Password: `Aws12345`
-3. Select `Finish`
+8. Select `Finish`
 
+<p align="center">
+    <img src="hana-studio-3.png" width="100%">
+</p>
 
-[Image: Screenshot 2020-06-19 at 16.51.38.png]
 You should now be able to navigate in the catalog and see all the tables and schemas of your HANA database host.
 
 
