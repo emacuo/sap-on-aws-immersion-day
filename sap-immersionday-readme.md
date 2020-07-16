@@ -1,4 +1,4 @@
-# Lab - SAP HANA Express (HXE) on AWS - AWS Immersion Day
+# SAP on AWS Immersion Day - SAP HANA Express (HXE) Lab
 
 ![GitHub Logo](/images/logo.png)
 
