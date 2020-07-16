@@ -134,13 +134,13 @@ Now that you are logged into the RDP host, set up the HANA Studio to connect to 
 3. You should land to the SAP HANA Administration Console by default. If the Java perspective is set as as the default perspective for the IDE, click on the top-right button (with a Swiss-knife icon) `SAP HANA Administration Console` to change the current perspective (view) the HANA Administration console one
 
 <p align="center">
-    <img src="hana-studio-1.png" width="100%">
+    <img src="hana-studio-1.png" width="10%">
 </p>
 
 4. Under the `Systems` tab, select the down-arrow icon and click on `Add System...`
 
 <p align="center">
-    <img src="hana-studio-2.png" width="100%">
+    <img src="hana-studio-2.png" width="20%">
 </p>
 
 5. Fill in the parameters as follows: 
@@ -154,7 +154,6 @@ Now that you are logged into the RDP host, set up the HANA Studio to connect to 
     5. Locale: `English (United States)`
     6. Folder: `/`
 
-
 6. Select `Next`
 7. Insert the following parameters: 
     1. User Name: `SYSTEM`
@@ -162,7 +161,7 @@ Now that you are logged into the RDP host, set up the HANA Studio to connect to 
 8. Select `Finish`
 
 <p align="center">
-    <img src="hana-studio-3.png" width="100%">
+    <img src="hana-studio-3.png" width="40%">
 </p>
 
 You should now be able to navigate in the catalog and see all the tables and schemas of your HANA database host.
