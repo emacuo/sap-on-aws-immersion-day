@@ -8,7 +8,7 @@
 
 The starting point of this lab is a system architecture based on 2 EC2 instances: a HANA database (r5.large instance with SUSE Linux Enterprise Server 15 with `hdbadm` password `Aws12345`) and a Jump Box RDP instance (t2.small instance with Windows Server 2019 and login through RDP username: `Administrator` and password `SAPonAWS$DSAG2019!`). 
 
-The HANA instance is deployed in a private subnet of the default Virtual Private Cloud (VPC). Therefore, the only way to access it is to SSH into it from the Jump Box instance, that is, instead, placed in a public subnet of the default VPC. The Jump Box comes also with an Eclipse-based version of HANA studio pre-installed. This could be used to administrate the HANA instance keeping our security best practices. Moreover, both HANA instance and Jump Box instance come with fully configured Security Groups and IAM roles and permissions to grant minimum priviledge permissions model.
+The HANA instance is deployed in a private subnet of the default Virtual Private Cloud (VPC). Therefore, the only way to access it from the public Internet is to SSH into it from the Jump Box instance, that is, instead, placed in a public subnet of the default VPC. The Jump Box comes also with an Eclipse-based version of HANA studio pre-installed. This could be used to administrate the HANA instance keeping our security best practices. Moreover, both HANA instance and Jump Box instance come with fully configured Security Groups and IAM roles and permissions to grant minimum priviledge permissions model.
 The architecture is fully deployed in eu-central-1 region (Frankfurt).
 The deployment of the full architecture has been done through a CloudFormation template. 
 
@@ -85,6 +85,7 @@ ifconfig
 vi /etc/hosts
 
 ```
+
 4. Scroll down the content of the file until reaching the line that contains the string: `10.x.x.239 hanaonaws01.local hanaonaws01`
 5. Press the `i` key in order to use the `INSERT` mode
 6. Comment that line by inserting a `#` character at the beginning of the line
@@ -96,8 +97,8 @@ vi /etc/hosts
 
 The <private-IP> parameter is the value that you copied at point 1 and you should paste at the beginning of the new line; `hanaonaws01.local` is the host-name; `hanaonaws01` is the alias for the host.
 
-1. Save and close the text editor 
-2. Try to ping the host-name to check everything works fine: 
+8. Save and close the text editor 
+9. Try to ping the host-name to check everything works fine: 
 
 ```
 ping hanaonaws01
@@ -105,7 +106,7 @@ ping hanaonaws01
 
 If everything works, you should receive some bytes back from the ICMPv4 protocol.
 
-3. Stop the process by pressing `CTRL`+`C`
+10. Stop the process by pressing `CTRL`+`C`
 
 Your HANA host has now a correct mapping between its private IP, its host name `hanaonaws01.local` and its host alias `hanaonaws01`. This operation can be also done via [YaST2 on SLES](https://www.suse.com/support/kb/doc/?id=000018501).
 
