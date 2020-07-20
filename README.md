@@ -62,7 +62,7 @@ visudo
 
 2. Go to the end of the `sudoers` file and add the following line. 
 
-If you are not familiar with `vi` and `visudo` commands: scroll down to the end of the file; hit the `o` key for opening a new line: at this point you should see the word `INSERT` at the bottom of the screen; add the text below and hit the return key; hit the `ESC` key: at this point `INSERT` should no longer appear at the bottom of the screen; type `ZZ` to save the file and close `visudo`.
+If you are not familiar with `vi` and `visudo` commands: scroll down to the end of the file; hit the `o` key for opening a new line: at this point you should see the word `INSERT` at the bottom of the screen; add the text below and hit the `Enter` key; hit the `ESC` key: at this point `INSERT` should no longer appear at the bottom of the screen; type `SHIFT`+`Z`+`Z` to save the file and close `visudo`. Warning 1: if `CTRL`+`Z` - `CTRL`+`V` doesn't work, use the relative functions through the right click menu (`Copy`+`Paste`). Warning 2: if you cannot correctly save the file by holding the keys `SHIFT`+`Z`+`Z`, in order to exit from the editor hit the following sequence of keys: `:q!`+`Enter` (exit without saving) or `:wq!`+`Enter` (exit after saving).
 
 ```
 hdbadm ALL=(ALL) NOPASSWD: ALL
@@ -87,16 +87,16 @@ vi /etc/hosts
 
 4. Scroll down the content of the file until reaching the line that contains the string: `10.x.x.239 hanaonaws01.local hanaonaws01`
 5. Press the `i` key in order to use the `INSERT` mode
-6. Comment that line by inserting a `#` character at the beginning of the line
+6. Comment that line by inserting a `#` character at the beginning of the line (before the first character of the line)
 7. Add a new line after the previously commented line, by inserting the following string:
 
 ```
 <private-IP> hanaonaws01.local hanaonaws01
 ```
 
-The <private-IP> parameter is the value that you copied at point 1 and you should paste at the beginning of the new line; `hanaonaws01.local` is the host-name; `hanaonaws01` is the alias for the host.
+The `<private-IP>` parameter is the value that you copied at point 1 and you should paste at the beginning of the new line; `hanaonaws01.local` is the host-name; `hanaonaws01` is the alias for the host.
 
-8. Save and close the text editor 
+8. Save and close the text editor (hold `SHIFT`+`Z`+`Z` or write `:wq!`+`Enter`)
 9. Try to ping the host-name to check everything works fine: 
 
 ```
