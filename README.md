@@ -83,7 +83,6 @@ ifconfig
 
 ```
 vi /etc/hosts
-
 ```
 
 4. Scroll down the content of the file until reaching the line that contains the string: `10.x.x.239 hanaonaws01.local hanaonaws01`
