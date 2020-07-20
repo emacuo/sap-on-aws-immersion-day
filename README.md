@@ -194,7 +194,7 @@ cdpro
 vi /usr/sap/HDB/SYS/profile/HDB_HDB00_hanaonaws01.local
 ```
 
-4. Press the `i` key to go to `INSERT` mode and change the value of `Autostart` parameter from `1` to `0`: 
+4. Press the `i` key to go to `INSERT` mode and change the value of `Autostart` parameter from `1` to `0`. Warning: you need to delete (with `DEL` key) the default value of `1` and replace it with `0`: 
 
 ```
 Autostart = 0
