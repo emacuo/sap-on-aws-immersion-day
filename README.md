@@ -137,7 +137,7 @@ Now that you are logged into the RDP host, set up the HANA Studio to connect to 
     <img src="hana-studio-1.png" width="30%">
 </p>
 
-4. Under the `Systems` tab, select the down-arrow icon and click on `Add System...`
+4. Under `Systems`, select the down-arrow icon and click on `Add System...`
 
 <p align="center">
     <img src="hana-studio-2.png" width="40%">
