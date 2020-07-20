@@ -129,7 +129,7 @@ Now that prerequisites are done, you can start setting up the RDP host. First, c
 
 Now that you are logged into the RDP host, set up the HANA Studio to connect to the HANA instance. HANA Studio is provided as a plugin for the Eclipse IDE. The IDE comes pre-installed in the RDP host. 
 
-1. Double click on the icon of `Eclipse Java Neon`
+1. Double click on the icon of `Eclipse Java Neon` (wait for its startup, about 1 minute at its first launch)
 2. When opening the SAP HANA Studio for the first time, you could get a prompt to select a directory as a workspace. If it happens, please, accept the default location. Moreover, if prompted to create a password hint for the master password, select `No`. If it doesn’t happen, you should directly land to SAP HANA Administration Console.
 3. You should land to the SAP HANA Administration Console by default. If the Java perspective is set as as the default perspective for the IDE, click on the top-right button (with a Swiss-knife icon) `SAP HANA Administration Console` to change the current perspective (view) the HANA Administration console one
 
