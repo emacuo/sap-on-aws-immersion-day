@@ -118,7 +118,7 @@ Now that prerequisites are done, you can start setting up the RDP host. First, c
 3. Click the `Connect` button at the top of the EC2 Dashboard screen
 4. Select the option `A standalone RDP client`
 5. Select `Download Remote Desktop File` and save it on your laptop
-6. Once downloaded, open the file and select `Continue`. Warning: if prompted, please, accept the request of a new certificate.
+6. Once downloaded, open the file and select `Continue`. Warning: don't worry if the certificate can't be verified back to a root certificate.
 7. Insert the User Name and Password parameters:
     1. User Name: `Administrator`
     2. Password: `SAPonAWS$DSAG2019!`
