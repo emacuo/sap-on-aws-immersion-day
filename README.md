@@ -145,8 +145,8 @@ Now that you are logged into the RDP host, set up the HANA Studio to connect to 
 
 5. Fill in the parameters as follows: 
 
-    1. Host Name: `<Private IP of HANA host>`. You can find it going to: 
-        `AWS Management Console` > `EC2 Dashboard` > `Running Instances` > `Select the HANA host` > `Description` tab > `Private IP`
+    1. Host Name: `<Private IP of HANA instance>`. You can find it going to: 
+        `AWS Management Console` > `EC2 Dashboard` > `Running Instances` > `Select the HANA instance` > `Description` tab > `Private IP`
     2. Instance Number: `00`
     3. Mode: `Multiple containers`
         1. Tenant database: `HDB`
