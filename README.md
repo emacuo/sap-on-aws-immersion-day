@@ -433,7 +433,7 @@ Install the AWS Backint Agent for SAP HANA on the HANA host by using an AWS Syst
 
 3. On the `Documents` page, select the `Owned by Amazon` tab. You should look for a document named `AWSSAP-InstallBackint` through the search bar.
 
-4. In the searchbar, search for `AWSSAP-InstallBackint` and hit `Enter`. Once the document appears, and choose `Run Command`
+4. In the searchbar, search for `AWSSAP-InstallBackint` and hit `Enter`. Once the document appears, click on its title and then choose `Run Command`
 5. Under the Command parameters, enter the following parameters:
     1. Choose the `Default` document version.
     2. `Bucket Name`: enter the name of the Amazon S3 bucket where you want to store your SAP HANA backup files (`hana-backup-<name initial + surname initial>-<last 2 digits of birth year>-backint`).
