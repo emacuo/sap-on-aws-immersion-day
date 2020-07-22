@@ -338,7 +338,7 @@ In the case of Jeff Bezos, for example, the bucket names would be respectively: 
 **AWS Management Console**
 As an alternative to the AWS CLI, you can create the S3 bucket manually by going to `Services` > `S3` from the AWS Management Console and by following these steps: 
 
-* Select** **`Create bucket`
+* Select `Create bucket`
 * Enter the following Bucket name: `hana-backup-<name initial + surname initial>-<last 2 digits of birth year>`
 * Select the **Region**: `EU (Frankfurt)`
 * Select `Create bucket`
