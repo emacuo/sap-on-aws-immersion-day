@@ -31,7 +31,9 @@ Before login to the instances, you need to set up some configuration on your HAN
 
 First, log into your HANA database server via Systems Manager Session Manager in the AWS Management Console. 
 
-1. From the AWS Management console, navigate to the `EC2 Dashboard`
+Warning: Amazon EC2 has recently changed his User Interface. If you are not familiar with AWS, it's strongly recommended to use the old UI, by switching the tick button in the top-left corner of the EC2 Dashboard. If you are comfortable with AWS, you can use the new UI, taking into account the discrepancies between the instructions and the new console.
+
+1. From the AWS Management console, go to `Services`, choose `EC2` and navigate to the `EC2 Dashboard`
 2. Go to `Running instances`
 3. Click on the checkbox to the left of the SAP HANA EC2 instance (the one of r5.large type)
 4. Click on the `Connect` button above
